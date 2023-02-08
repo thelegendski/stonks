@@ -3,11 +3,6 @@ Object.prototype.toString = function() {
   return JSON.stringify(this)
 }
 
-//add date conversion here
-function convertData (str) {
-
-}
-
 //as simple as you can get
 async function getData (URL) {
   const response = await fetch(URL)
@@ -17,8 +12,10 @@ async function getData (URL) {
 
 //function that will end up runnin' the whole program
 async function getStockData (symbol) {
-  //retrieve data here
+  /* globals */
   const token = "cfgk7khr01qlga2ufnb0cfgk7khr01qlga2ufnbg" //may need to base64 encode this in full release so no one is an idiot an' steals it.
+  
+  /* now data */
   let data = await getData(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${token}`) //need to remember await when callin' asynchronous functionz
   
   //cache prices in object for easier readability
@@ -32,22 +29,28 @@ async function getStockData (symbol) {
     percent: data.dp, //percent the price has changed
   }
   
-  //need to add forecasts from longer periodz. https://finnhub.io/docs/api/stock-candles
-  //looks like i'll need a UNIX converter so Date.prototype.toUNIX() = function(){return (this.getTime() / 1000) | 0;}
-  //beyond that i'll need a one week, one month, three month, an' one year converter for data, ;-;
-  //need to figure out best way to retrieve date in readable format that will be parsed with RegEx. probs a native Date prototype or method
-  
+  /* past data */
+  //employment of moment.js dependency
+  //now
+  const now = moment().unix()
   //one week
-  
+  const weekAgo = moment().subtract(7, 'days').unix()
   //one month
-  
+  const monthAgo = moment().subtract(1, 'months').unix()
   //one year
+  const yearAgo = moment().subtract(1, 'years').unix()
   
+  //need to add forecasts from longer periodz. https://finnhub.io/docs/api/stock-candles
   
-  //display data here
-  //probs gon' need chart.js
-  //that might be a pain...
-  //maybe use ski.js if chart.js doesn't work as a dependency
+  /* output */
+  
+  //current prices here
+  //just set some values with CSS stylin'
+  
+  //chart.js here
+  //week
+  //month
+  //year
   
   //just print the data out for now
   println(`current price: $${price.now}`)
@@ -61,3 +64,6 @@ async function getStockData (symbol) {
 
 //will need to be attached to an event listener for an input element
 getStockData("AAPL")
+
+//may end up listin' the potential symbols for the company inputted with event listener for such an element here
+//actually that's probs over my paygrade, xD.
