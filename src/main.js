@@ -1,13 +1,24 @@
 //for my sanity
-Object.prototype.toString = function() {
-  return JSON.stringify(this)
+class Dictionary {
+  constructor (object) {
+    Object.assign(this, object)
+  }
+  set (key, value) {
+    this[key] = value
+  }
+  get (key) {
+    return this[key]
+  }
+  toString () {
+    return JSON.stringify(this)
+  }
 }
 
 //as simple as you can get
 async function getData (URL) {
   const response = await fetch(URL)
   const data = await response.json()
-  return data
+  return new Dictionary(data)
 }
 
 //function that will end up runnin' the whole program
@@ -20,13 +31,13 @@ async function getStockData (symbol) {
   
   //cache prices in object for easier readability
   const price = {
-    now: data.c, //current price
-    close: data.pc, //closin' price
-    open: data.o, //openin' price
-    high: data.h, //highest price of the day
-    low: data.l, //lowest price of the day
-    change: data.d, //price change
-    percent: data.dp, //percent the price has changed
+    now: data.get('c'), //current price
+    close: data.get('pc'), //closin' price
+    open: data.get('o'), //openin' price
+    high: data.get('h'), //highest price of the day
+    low: data.get('l'), //lowest price of the day
+    change: data.get('d'), //price change
+    percent: data.get('dp'), //percent the price has changed
   }
   
   /* past data */
