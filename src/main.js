@@ -52,8 +52,8 @@ async function getStockData (symbol) {
   const yearAgo = moment().subtract(1, 'years').unix()
   
   //need to add forecasts from longer periodz. https://finnhub.io/docs/api/stock-candles
-  data = await getData(`https://finhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${weekAgo}&to=${now}&token=${token}`)
-  println(data)
+  //data = await getData(`https://finhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${weekAgo}&to=${now}&token=${token}`)
+  println(`https://finhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${weekAgo}&to=${now}&token=${token}`)
   /* output */
   
   //current prices here
