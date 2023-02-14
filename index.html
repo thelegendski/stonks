@@ -1,17 +1,29 @@
 <!doctype html>
 <html>
   <head>
-    <!-- simple, but this will get much more complex soon once i add in all of the elements -->
-    <link rel = "stylesheet" href = "./src/main.css">
+    <!-- load Raleway font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <!-- all the stylin' -->
+    <link rel = "stylesheet" href = "./main.css">
   </head>
   <body>
+    <input type = "text" placeholder = "your stock symbol">
+    <div class = "graph-wrapper">
+        <canvas class = "day"></canvas>
+        <canvas class = "week"></canvas>
+        <canvas class = "month"></canvas>
+        <canvas class = "halfYear"></canvas>
+        <canvas class = "year"></canvas>
+    </div>
     <!-- moment.js dependency -->
     <script src = "https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.js"></script>
     <!-- chart.js dependency -->
-    <script src = "https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <!-- print.js dependency -->
     <script src = "https://cdn.jsdelivr.net/gh/thelegendski/ski.js@1.8.3/addons/print.js"></script>
     <!-- the actual script -->
-    <script src = "./src/main.js"></script>
+    <script src = "./main.js"></script>
   </body>
 </html>
